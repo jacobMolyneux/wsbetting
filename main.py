@@ -1,6 +1,7 @@
 import requests 
 import praw
 from analysis import *
+from praw.models import MoreComments
 
 class User:
     user_agent = 'python: 3.10.1 (by/Equivalent-Prior-778)'
@@ -18,8 +19,11 @@ reddit = praw.Reddit(
 stock_list = []
 
 for comment in reddit.submission(id = 'rpl3lv').comments:
+    if isinstance(comment, MoreComments):
+        continue
     parse_comment(comment.body, stock_list)
     
 
-    
+data = clean_data(stock_list)
 
+print(data)
