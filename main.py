@@ -1,7 +1,8 @@
 import requests 
 import praw
-from analysis import *
+from methods import *
 from praw.models import MoreComments
+API_Key = '4PMmhcfwKg0DsZBddMS8nXRHsyAnxECU'
 
 class User:
     user_agent = 'python: 3.10.1 (by/Equivalent-Prior-778)'
