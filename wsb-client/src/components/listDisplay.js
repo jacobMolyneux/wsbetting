@@ -26,13 +26,13 @@ const ListDisplay = () => {
                 "Company": "FB",
                 "Ticker": "FB",
                 "Price": 150,
-                "Mentions": 1
+                "Mentions": 2
             }
 
     ])
-    const dataMap = data.map((info) => 
-        <ListGroup.Item>
-            <ListCard company = {info.Company} ticker = {info.Ticker} price = {info.Price} mentions = {info.Mentions} />
+    const dataMap = data.map((info, index) => 
+        <ListGroup.Item className = 'bg-dark'>
+            <ListCard company = {info.Company} ticker = {info.Ticker} price = {info.Price} mentions = {info.Mentions} rank = {index + 1} />
         </ListGroup.Item>
     )
     return (

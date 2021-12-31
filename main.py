@@ -19,12 +19,15 @@ reddit = praw.Reddit(
 
 stock_list = []
 
-for comment in reddit.submission(id = 'rpl3lv').comments:
+# get comments from reddit:
+for comment in reddit.submission(id = 'rrz70p').comments:
     if isinstance(comment, MoreComments):
         continue
     parse_comment(comment.body, stock_list)
-    
 
-data = clean_data(stock_list)
 
-print(data)
+counted_data = count_data(stock_list)
+
+def rank_mentions(data):
+    for i in counted_data:
+        print(counted_data[i])

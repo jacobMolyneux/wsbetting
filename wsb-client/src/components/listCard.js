@@ -3,12 +3,13 @@ import Col from 'react-bootstrap/Col'
 const ListCard = (props) => {
     return (
         <Card className = 'd-flex'>
-            <Col className = 'border'>
-            <Card.Title>{props.company}</Card.Title>
-            <Card.Subtitle>{props.ticker}</Card.Subtitle>
+            <h1>{props.rank}</h1>
+            <Col className = 'border-bottom'>
+            <Card.Title className = 'text-primary'>{props.company}</Card.Title>
+            <Card.Subtitle>Ticker Symbol: {props.ticker}</Card.Subtitle>
             </Col>
-           <Col className = 'border'>
-           <h1>{props.price}</h1>
+           <Col style = {{width: '50%'}}>
+           <h3>Price: ${props.price}</h3>
            <p>Mentions: {props.mentions}</p>
            </Col>
         </Card>

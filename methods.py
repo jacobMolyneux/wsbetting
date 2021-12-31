@@ -4,27 +4,27 @@ import json
 
 
 API_Key = '4PMmhcfwKg0DsZBddMS8nXRHsyAnxECU'
-# checks to see if the word is a stock
-def checker(word):
-    if len(word) < 2:
-        return False
-    else:
-        return word.isupper()
+
+
 
 
 # goes through the reddit comment and adds stocks to the list of mentioned stocks
 def parse_comment(comment, stock_list):
     for i in comment.split():
-        if checker(i) == True:
+        if i.isupper() == True and check_length(i) == True:
             stock_list.append(i)
         else:
             pass
     
 
-
+def check_length(word):
+    if len(word) > 2 and len(word) < 6:
+        return True
+    else:
+        return False
 dummy_data = ['BB', 'IM', 'AT', 'HOME', 'DEPOT,', 'WHERE', 'THE', 'HOES', 'AT??', 'SPY', '$WISH.', 'SPY', 'TSLA', 'WSB', 'WISH', 'FKKK', 'TSLA', 'CALLS']
 
-def clean_data(stock_mentions):
+def count_data(stock_mentions):
     new_dict = collections.defaultdict(lambda: 0)
     for i in stock_mentions:
         if i not in new_dict:
@@ -35,6 +35,7 @@ def clean_data(stock_mentions):
             pass
     return new_dict
 
+# uses api tp check if the ticker is a valid financial instrument ( return true of false)
 def valid_ticker(ticker, api_key):
     response = requests.get(f"https://api.polygon.io/v3/reference/tickers?ticker={ticker}&active=true&sort=ticker&order=asc&limit=10&apiKey={api_key}")
     response.json()
@@ -42,11 +43,9 @@ def valid_ticker(ticker, api_key):
     # print(type(rough_data))
     # print(type(json.loads(rough_data)))
     data = response.json()
-    if str(data['results']) == 'None':
+    if str(data['results']) == 'None' or str(data['results'] =='Null'):
         return False
     else:
         return True
     
-print(valid_ticker('AAPL', API_Key))
-print(valid_ticker('MMM', API_Key))
-print(valid_ticker('THE', API_Key))
+
