@@ -28,6 +28,6 @@ for comment in reddit.submission(id = 'rrz70p').comments:
 
 counted_data = count_data(stock_list)
 
-def rank_mentions(data):
-    for i in counted_data:
-        print(counted_data[i])
+sorted_data = sorted(counted_data.items(), key=lambda counted_data: counted_data[1], reverse=True)
+
+print(sorted_data)

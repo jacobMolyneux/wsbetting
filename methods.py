@@ -5,9 +5,6 @@ import json
 
 API_Key = '4PMmhcfwKg0DsZBddMS8nXRHsyAnxECU'
 
-
-
-
 # goes through the reddit comment and adds stocks to the list of mentioned stocks
 def parse_comment(comment, stock_list):
     for i in comment.split():
@@ -16,14 +13,14 @@ def parse_comment(comment, stock_list):
         else:
             pass
     
-
+# checks to see if the word is a valid length. If too long or too short it returns false.
 def check_length(word):
     if len(word) > 2 and len(word) < 6:
         return True
     else:
         return False
-dummy_data = ['BB', 'IM', 'AT', 'HOME', 'DEPOT,', 'WHERE', 'THE', 'HOES', 'AT??', 'SPY', '$WISH.', 'SPY', 'TSLA', 'WSB', 'WISH', 'FKKK', 'TSLA', 'CALLS']
 
+# counts the number of mentions in the list
 def count_data(stock_mentions):
     new_dict = collections.defaultdict(lambda: 0)
     for i in stock_mentions:
